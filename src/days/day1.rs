@@ -16,6 +16,20 @@ pub fn day1_1(input: &HashMap<i32, i32>) -> i32 {
          .map_or_else(|| 0, |(key, value)| key * value)
 }
 
+pub fn day1_1_alt(input: &str) -> i32 {
+    input.lines()
+        .filter_map(|s| {
+            let first = s.parse::<i32>().unwrap();
+            let second = 2020 - first;
+            match input.contains(second.to_string().as_str()) {
+                true => Some(first * second),
+                false => None
+            }
+        })
+        .next()
+        .unwrap()
+}
+
 pub fn day1_2(input: &HashMap<i32, i32>) -> i32 {
     input.iter()
          .enumerate()
@@ -43,12 +57,6 @@ pub fn input2hash(input: &String) -> HashMap<i32, i32> {
             let i = s.parse::<i32>().unwrap();
             (i, 2020 - i)
         })
-        .collect()
-}
-
-pub fn input2vec(input: &String) -> Vec<i32> {
-    input.lines()
-        .map(|s| { s.parse::<i32>().unwrap() })
         .collect()
 }
 

@@ -8,9 +8,9 @@ edition = "2018"
 
 [dependencies]
 
-#[dev-dependencies]
-#criterion = "0.3"
+[dev-dependencies]
+criterion = "0.3"
 
-#[[bench]]
-#name = "my_benchmark"
-#harness = false*/
+[[bench]]
+name = "my_benchmark"
+harness = false
