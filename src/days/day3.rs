@@ -17,26 +17,26 @@ pub fn day3_1(input: &str) -> u32 {
 
 pub fn day3_2(input: &str) -> u32 {
     trees_on_slope(input, 1, 1) *
-        trees_on_slope(input, 3, 1) *
-        trees_on_slope(input, 5, 1) *
-        trees_on_slope(input, 7, 1) *
-        trees_on_slope(input, 1, 2)
+    trees_on_slope(input, 3, 1) *
+    trees_on_slope(input, 5, 1) *
+    trees_on_slope(input, 7, 1) *
+    trees_on_slope(input, 1, 2)
 }
 
-fn trees_on_slope(input: &str, right: usize, down_skip: usize) -> u32 {
+fn trees_on_slope(input: &str, right: usize, down: usize) -> u32 {
     let mut x = 0;
 
     input.lines()
-        .step_by(down_skip)
-        .filter_map(|s| {
-            let tree = match s.trim().chars().nth(x).unwrap() == '#' {
-                true => Some(true),
-                false => None,
-            };
-            x = (x + right) % s.trim().len();
-            tree
-        })
-        .count() as u32
+         .step_by(down)
+         .filter_map(|s| {
+             let tree = match s.trim().chars().nth(x).unwrap() == '#' {
+                 true => Some(true),
+                 false => None,
+             };
+             x = (x + right) % s.trim().len();
+             tree
+         })
+         .count() as u32
 }
 
 #[cfg(test)]

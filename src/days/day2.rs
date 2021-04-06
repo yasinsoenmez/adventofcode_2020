@@ -16,14 +16,13 @@ pub fn day2() -> (u32, u32) {
 
 pub fn day2_1(input: &Vec<Pass>) -> u32 {
     input.iter()
-        .filter(|pass| {
-            let count = pass.password
-                .chars()
-                .filter(|c| c == &pass.character)
-                .count() as u32;
-            pass.min <= count && pass.max >= count
-        })
-        .count() as u32
+         .filter(|pass| {
+             let count = pass.password.chars()
+                                      .filter(|c| c == &pass.character)
+                                      .count() as u32;
+             pass.min <= count && pass.max >= count
+         })
+         .count() as u32
 }
 
 pub fn day2_1_string(input: &str) -> u32 {
@@ -32,8 +31,8 @@ pub fn day2_1_string(input: &str) -> u32 {
              let min_rest = pass.split('-').collect::<Vec<&str>>();
              let max_rest_pass = min_rest[1].split(' ').collect::<Vec<&str>>();
              let count = max_rest_pass[2].chars()
-                .filter(|c| c == &max_rest_pass[1].chars().nth(0).unwrap())
-                .count() as u32;
+                                         .filter(|c| c == &max_rest_pass[1].chars().nth(0).unwrap())
+                                         .count() as u32;
              min_rest[0].parse::<u32>().unwrap() <= count && max_rest_pass[0].parse::<u32>().unwrap() >= count
          })
          .count() as u32
@@ -41,9 +40,9 @@ pub fn day2_1_string(input: &str) -> u32 {
 
 pub fn day2_2(input: &Vec<Pass>) -> u32 {
     input.iter()
-        .filter(|pass| {
-            (pass.password.chars().nth((pass.min - 1) as usize) == Some(pass.character))
-                ^ (pass.password.chars().nth((pass.max - 1) as usize) == Some(pass.character))
+         .filter(|pass| {
+             (pass.password.chars().nth((pass.min - 1) as usize) == Some(pass.character))
+           ^ (pass.password.chars().nth((pass.max - 1) as usize) == Some(pass.character))
         })
         .count() as u32
 }
@@ -64,7 +63,8 @@ pub fn string2vec(input: &str) -> Vec<Pass> {
                  character: max_rest_pass[1].chars().nth(0).unwrap(),
                  password: max_rest_pass[2].to_string()
              }
-         }).collect()
+         })
+         .collect()
 }
 
 #[cfg(test)]
